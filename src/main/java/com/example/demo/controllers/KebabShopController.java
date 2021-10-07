@@ -2,9 +2,11 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.KebabShop;
 import com.example.demo.repositories.KebabShopRepo;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@Api(value = "Kebab Shop Controller", description = "Rest endpoints for Kebab shops")
 @RestController
 public class KebabShopController {
 
@@ -31,6 +33,11 @@ public class KebabShopController {
             kebab.save(foundKebabShops);
             return "kebab shop found and patched";
         }).orElse("kebab shop not found");
+    }
+
+    @GetMapping("/kebab-shops/sorted")
+    public Iterable<KebabShop> kebabShopsSorted(@RequestParam KebabShop kebabShop, int rating){
+        return kebab.findKebabShopsByOOrderByRating(kebabShop,rating);
     }
 
     @DeleteMapping("/kebab-shops/{id}")

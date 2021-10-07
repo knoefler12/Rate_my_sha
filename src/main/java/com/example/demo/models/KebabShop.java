@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class KebabShop {
     private Long id;
 
     @Column
+    @ApiModelProperty(notes="Name of the kebab shop")
     private String name;
 
     @Column
