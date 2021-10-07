@@ -13,6 +13,11 @@ public class KebabShopController {
     @Autowired
     KebabShopRepo kebab;
 
+    @GetMapping("/kebab-shops/sorted")
+    public Iterable<KebabShop> findKebabShopsOrderedByRating(){
+        return kebab.findKebabShopsOrderedByHighestRating();
+    }
+
     @PostMapping("/kebab-shops")
     public KebabShop addKebabShop(@RequestBody KebabShop newKebabShop){
         newKebabShop.setId(null);
@@ -33,11 +38,6 @@ public class KebabShopController {
             kebab.save(foundKebabShops);
             return "kebab shop found and patched";
         }).orElse("kebab shop not found");
-    }
-
-    @GetMapping("/kebab-shops/sorted")
-    public Iterable<KebabShop> findKebabShopsOrderedByRating(){
-       return kebab.findKebabShopsOrderedByHighestRating();
     }
 
     @DeleteMapping("/kebab-shops/{id}")
