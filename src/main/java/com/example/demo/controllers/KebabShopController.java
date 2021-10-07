@@ -6,7 +6,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Api(value = "Kebab Shop Controller", description = "Rest endpoints for Kebab shops")
+//@Api(value = "Kebab Shop Controller", description = "Rest endpoints for Kebab shops")
 @RestController
 public class KebabShopController {
 
@@ -36,8 +36,8 @@ public class KebabShopController {
     }
 
     @GetMapping("/kebab-shops/sorted")
-    public Iterable<KebabShop> kebabShopsSorted(@RequestParam KebabShop kebabShop, int rating){
-        return kebab.findKebabShopsByOOrderByRating(kebabShop,rating);
+    public Iterable<KebabShop> findKebabShopsOrderedByRating(){
+       return kebab.findKebabShopsOrderedByHighestRating();
     }
 
     @DeleteMapping("/kebab-shops/{id}")

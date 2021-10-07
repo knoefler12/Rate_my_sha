@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @Table(name="kebab_shops")
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
 public class KebabShop {
 
 
